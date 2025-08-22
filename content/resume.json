@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Alexander DiCaprio",
-    "label": "Head of AI Solutions",
+    "label": "Data and AI Product Strategist",
     "image": "https://avatars.githubusercontent.com/u/8881986?v=4",
     "email": "alex@adicapr.io",
     "phone": "484-888-4655",
@@ -104,27 +104,49 @@
     {
       "name": "Funhouse",
       "description": "Architected an Azure Databricks based data science sandbox that allowed over 1000 data scientists across the Department of State to experiment with secure open source python and R packages and Azure AI service.  The solution was goverened by a SDK that allowed us to track usage, enhance functionality, and simplify complex code structures.",
-      "keywords": ["Databricks", "Python", "Azure", "AI"],
+      "keywords": [
+        "Databricks",
+        "Python",
+        "Azure",
+        "AI"
+      ],
       "url": "https://state.gov",
-      "roles": ["Product Manager", "Strategist"],
+      "roles": [
+        "Product Manager",
+        "Strategist"
+      ],
       "startDate": "2024-09-01",
       "entity": "Department of State"
     },
     {
       "name": "AI Marketplace",
       "description": "Developed strategic vision for the Department of State's AI Marketplace -- a human-centered interface to help users across the Department locate trusted AI platforms.  Lead over a hundred hours of customer and stakeholder interviews, designed an AI Maturity Pillar model that identified key considerations on AI usage including ethics and Bias that we risk as we continue to build and deploy AI solutions.",
-      "keywords": ["Databricks", "Python", "Azure", "AI"],
+      "keywords": [
+        "Databricks",
+        "Python",
+        "Azure",
+        "AI"
+      ],
       "url": "https://state.gov",
-      "roles": ["Product Manager", "Strategist"],
+      "roles": [
+        "Product Manager",
+        "Strategist"
+      ],
       "startDate": "2024-10-01",
       "entity": "Department of State"
     },
     {
       "name": "Human Resources Automation",
       "description": "Built Power Platform solution that automated multiple HR workflows across MetaPhase Consulting. The soution leveraged Power Apps, Bower BI, Power Automate, and SharePoint and allowed rapid development of organizational charts, tracking of transactional HR Audit logs, and management and approvals of organizational awards and trainings.",
-      "keywords": ["Power Apps", "Power Automate", "SharePoint Online"],
+      "keywords": [
+        "Power Apps",
+        "Power Automate",
+        "SharePoint Online"
+      ],
       "url": "https://metaphaseconsulting.com",
-      "roles": ["Developer"],
+      "roles": [
+        "Developer"
+      ],
       "startDate": "2022-06-01",
       "endDate": "2023-08-01",
       "entity": "Adicaprio Management Consulting"
@@ -132,9 +154,16 @@
     {
       "name": "Data Literacy Framework",
       "description": "Architected the Data Literacy Framework and maturity model that defined the strategic goals on building an Data and AI informed USCIS.  Specifically through the identification of key skills, competencies, and learning pathways to build capacity over time.",
-      "keywords": ["Data Literacy", "Strategic Design"],
+      "keywords": [
+        "Data Literacy",
+        "Strategic Design"
+      ],
       "url": "https://uscis.gov",
-      "roles": ["Strategist", "Program Manager", "Advisor"],
+      "roles": [
+        "Strategist",
+        "Program Manager",
+        "Advisor"
+      ],
       "startDate": "2018-07-01",
       "endDate": "2022-07-01",
       "entity": "MetaPhase Consulting"
@@ -142,9 +171,14 @@
     {
       "name": "Data Strategy",
       "description": "Advisory to the Chief Data Officer to manage the deployment the initial USCIS Data Strategy. Specifically through the development of a comprehensive review of the organizational structures, identification of vision, goals, and objectives, alignment to Executive Orders and Congressional Mandates, and office skill assessments.",
-      "keywords": ["Data Strategy"],
+      "keywords": [
+        "Data Strategy"
+      ],
       "url": "https://uscis.gov",
-      "roles": ["Advisor", "Strategist"],
+      "roles": [
+        "Advisor",
+        "Strategist"
+      ],
       "startDate": "2018-07-01",
       "endDate": "2022-07-01",
       "entity": "MetaPhase Consulting"
@@ -152,9 +186,17 @@
     {
       "name": "Machine Learning and Data Analytics",
       "description": "Managed the transformation, migration and automation of a massive excel based report to Python/SQL Databricks notebooks and Tableau, reducing a 30 day process down to 3 days while increasing organizational transparency through Dashboard views of datasets.  Tasks included market research, customer outreach, automation of data pipelines, data wrangling and human centered Tableau dashboard development.",
-      "keywords": ["Databricks", "Human Centered Design", "Process Automation"],
+      "keywords": [
+        "Databricks",
+        "Human Centered Design",
+        "Process Automation"
+      ],
       "url": "https://uscis.gov",
-      "roles": ["Program Manager", "Advisor", "Strategist"],
+      "roles": [
+        "Program Manager",
+        "Advisor",
+        "Strategist"
+      ],
       "startDate": "2018-07-01",
       "endDate": "2022-07-01",
       "entity": "MetaPhase Consulting"
@@ -227,7 +269,10 @@
     {
       "name": "Automation",
       "level": "5",
-      "keywords": ["Process Automation", "Workflow Optimization"]
+      "keywords": [
+        "Process Automation",
+        "Workflow Optimization"
+      ]
     },
     {
       "name": "Data and AI Strategy",
@@ -243,12 +288,21 @@
     {
       "name": "Power Platform",
       "level": "5",
-      "keywords": ["Power BI", "Power Apps", "Power Automate", "SharePoint"]
+      "keywords": [
+        "Power BI",
+        "Power Apps",
+        "Power Automate",
+        "SharePoint"
+      ]
     },
     {
       "name": "Other Systems",
       "level": "2",
-      "keywords": ["Databricks", "Azure Cloud Services", "Docker"]
+      "keywords": [
+        "Databricks",
+        "Azure Cloud Services",
+        "Docker"
+      ]
     }
   ],
   "languages": [],
