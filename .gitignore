@@ -1,0 +1,23 @@
+# Node
+node_modules/
+
+# Build outputs
+.svelte-kit/
+dist/
+.vite/
+
+# Env and data
+.env
+.env.*
+data/
+
+# Cloudflare/Wrangler
+.wrangler/
+
+# Python (local tooling)
+.venv/
+python/.venv/
+python/__pycache__/
+
+# OS/editor
+.DS_Store
