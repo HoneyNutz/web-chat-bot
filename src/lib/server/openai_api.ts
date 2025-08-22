@@ -1,6 +1,7 @@
 import { env as localEnv } from "$env/dynamic/private";
 
 export type OpenAIConfig = Partial<{
+  // Back-compat keys
   OPENAI_API_KEY: string;
   OPENAI_BASE_URL: string;
   OPENAI_EMBED_API_KEY: string;
@@ -9,31 +10,42 @@ export type OpenAIConfig = Partial<{
   OPENAI_EMBED_MODEL: string;
   OPENROUTER_SITE_URL: string;
   OPENROUTER_SITE_NAME: string;
+  // New provider-agnostic keys
+  CHAT_API_KEY: string;
+  CHAT_BASE_URL: string;
+  CHAT_MODEL: string;
+  EMBEDDING_API_KEY: string;
+  EMBEDDING_BASE_URL: string;
+  EMBEDDING_MODEL: string;
+  SITE_URL: string;
+  SITE_NAME: string;
   ORIGIN: string;
 }>;
 
 function resolveCfg(cfg?: OpenAIConfig) {
-  const OPENAI_API_KEY = cfg?.OPENAI_API_KEY || localEnv.OPENAI_API_KEY;
-  const OPENAI_BASE_URL =
-    cfg?.OPENAI_BASE_URL || localEnv.OPENAI_BASE_URL || "https://openrouter.ai/api/v1";
-  const OPENAI_EMBED_API_KEY =
-    cfg?.OPENAI_EMBED_API_KEY || localEnv.OPENAI_EMBED_API_KEY || OPENAI_API_KEY;
-  const OPENAI_EMBED_BASE_URL =
-    cfg?.OPENAI_EMBED_BASE_URL || localEnv.OPENAI_EMBED_BASE_URL || "";
-  const CHAT_MODEL = cfg?.OPENAI_CHAT_MODEL || localEnv.OPENAI_CHAT_MODEL || "openrouter/auto";
+  // Prefer new agnostic keys, then fall back to legacy OPENAI_* keys
+  const CHAT_API_KEY = cfg?.CHAT_API_KEY || cfg?.OPENAI_API_KEY || localEnv.CHAT_API_KEY || localEnv.OPENAI_API_KEY;
+  const CHAT_BASE_URL =
+    cfg?.CHAT_BASE_URL || cfg?.OPENAI_BASE_URL || localEnv.CHAT_BASE_URL || localEnv.OPENAI_BASE_URL || "https://openrouter.ai/api/v1";
+  const EMBEDDING_API_KEY =
+    cfg?.EMBEDDING_API_KEY || cfg?.OPENAI_EMBED_API_KEY || localEnv.EMBEDDING_API_KEY || localEnv.OPENAI_EMBED_API_KEY || CHAT_API_KEY;
+  const EMBEDDING_BASE_URL =
+    cfg?.EMBEDDING_BASE_URL || cfg?.OPENAI_EMBED_BASE_URL || localEnv.EMBEDDING_BASE_URL || localEnv.OPENAI_EMBED_BASE_URL || "";
+  const CHAT_MODEL = cfg?.CHAT_MODEL || cfg?.OPENAI_CHAT_MODEL || localEnv.CHAT_MODEL || localEnv.OPENAI_CHAT_MODEL || "openrouter/auto";
   const EMBED_MODEL =
-    cfg?.OPENAI_EMBED_MODEL || localEnv.OPENAI_EMBED_MODEL || "text-embedding-3-small";
+    cfg?.EMBEDDING_MODEL || cfg?.OPENAI_EMBED_MODEL || localEnv.EMBEDDING_MODEL || localEnv.OPENAI_EMBED_MODEL || "text-embedding-3-small";
   const SITE_URL =
-    cfg?.OPENROUTER_SITE_URL || localEnv.OPENROUTER_SITE_URL || cfg?.ORIGIN || localEnv.ORIGIN || "http://localhost:5173";
-  const SITE_NAME = cfg?.OPENROUTER_SITE_NAME || localEnv.OPENROUTER_SITE_NAME || "Personal Website Chatbot";
-  if (!OPENAI_API_KEY) {
-    console.warn("OPENAI_API_KEY not set. Set it in environment for chat and embeddings.");
+    cfg?.SITE_URL || cfg?.OPENROUTER_SITE_URL || localEnv.SITE_URL || localEnv.OPENROUTER_SITE_URL || cfg?.ORIGIN || localEnv.ORIGIN || "http://localhost:5173";
+  const SITE_NAME = cfg?.SITE_NAME || cfg?.OPENROUTER_SITE_NAME || localEnv.SITE_NAME || localEnv.OPENROUTER_SITE_NAME || "Personal Website Chatbot";
+  if (!CHAT_API_KEY) {
+    console.warn("CHAT_API_KEY (or OPENAI_API_KEY) not set. Set it in environment for chat/embeddings.");
   }
+  // Return legacy-shaped keys to avoid touching call-sites
   return {
-    OPENAI_API_KEY,
-    OPENAI_BASE_URL,
-    OPENAI_EMBED_API_KEY,
-    OPENAI_EMBED_BASE_URL,
+    OPENAI_API_KEY: CHAT_API_KEY,
+    OPENAI_BASE_URL: CHAT_BASE_URL,
+    OPENAI_EMBED_API_KEY: EMBEDDING_API_KEY,
+    OPENAI_EMBED_BASE_URL: EMBEDDING_BASE_URL,
     CHAT_MODEL,
     EMBED_MODEL,
     SITE_URL,

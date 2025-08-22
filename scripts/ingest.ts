@@ -3,17 +3,17 @@ import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-// Prefer embedding-specific envs so ingest can use the same provider as runtime RAG
-const OPENAI_API_KEY =
-  process.env.OPENAI_EMBED_API_KEY || process.env.OPENAI_API_KEY;
-const OPENAI_BASE_URL =
-  process.env.OPENAI_EMBED_BASE_URL ||
-  process.env.OPENAI_BASE_URL ||
-  "https://api.openai.com/v1";
-const EMBED_MODEL = process.env.OPENAI_EMBED_MODEL || "text-embedding-3-small";
-const SITE_URL = process.env.OPENROUTER_SITE_URL || "http://localhost:5173";
-const SITE_NAME =
-  process.env.OPENROUTER_SITE_NAME || "Personal Website Chatbot";
+// Provider-agnostic vars first, fallback to legacy OPENAI_* to avoid breaking changes
+const CHAT_API_KEY = process.env.CHAT_API_KEY || process.env.OPENAI_API_KEY;
+const CHAT_BASE_URL =
+  process.env.CHAT_BASE_URL || process.env.OPENAI_BASE_URL || "https://openrouter.ai/api/v1";
+const EMBEDDING_API_KEY =
+  process.env.EMBEDDING_API_KEY || process.env.OPENAI_EMBED_API_KEY || CHAT_API_KEY;
+const EMBEDDING_BASE_URL =
+  process.env.EMBEDDING_BASE_URL || process.env.OPENAI_EMBED_BASE_URL || "https://api.openai.com/v1";
+const EMBEDDING_MODEL = process.env.EMBEDDING_MODEL || process.env.OPENAI_EMBED_MODEL || "text-embedding-3-small";
+const SITE_URL = process.env.SITE_URL || process.env.OPENROUTER_SITE_URL || "http://localhost:5173";
+const SITE_NAME = process.env.SITE_NAME || process.env.OPENROUTER_SITE_NAME || "Personal Website Chatbot";
 const PY_EMBED_URL = process.env.PY_EMBED_URL; // e.g., http://127.0.0.1:8000/embed
 
 type IndexEntry = {
@@ -23,8 +23,8 @@ type IndexEntry = {
   embedding: number[];
 };
 
-if (!PY_EMBED_URL && !OPENAI_API_KEY) {
-  console.error("Missing PY_EMBED_URL or OPENAI_API_KEY in environment");
+if (!PY_EMBED_URL && !EMBEDDING_API_KEY) {
+  console.error("Missing PY_EMBED_URL or EMBEDDING_API_KEY in environment");
   console.error(
     "Set PY_EMBED_URL=http://127.0.0.1:8000/embed to use local Python embeddings",
   );
@@ -45,15 +45,16 @@ async function embed(text: string): Promise<number[]> {
   } else {
     // Normalize model id for OpenAI provider
     const isOpenAIProvider =
-      OPENAI_BASE_URL.includes("/openai") || OPENAI_BASE_URL.includes("api.openai.com");
-    const model = isOpenAIProvider && EMBED_MODEL.startsWith("openai/")
-      ? EMBED_MODEL.slice("openai/".length)
-      : EMBED_MODEL;
-    const res = await fetch(`${OPENAI_BASE_URL}/embeddings`, {
+      EMBEDDING_BASE_URL.includes("/openai") || EMBEDDING_BASE_URL.includes("api.openai.com");
+    const model = isOpenAIProvider && EMBEDDING_MODEL.startsWith("openai/")
+      ? EMBEDDING_MODEL.slice("openai/".length)
+      : EMBEDDING_MODEL;
+    const prefix = EMBEDDING_BASE_URL.replace(/\/$/, "");
+    const res = await fetch(`${prefix}/embeddings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
+        Authorization: `Bearer ${EMBEDDING_API_KEY}`,
         "HTTP-Referer": SITE_URL,
         "X-Title": SITE_NAME,
       },

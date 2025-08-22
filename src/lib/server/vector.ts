@@ -101,7 +101,7 @@ async function awaitableSearch(
     const compatible = index.filter((e) => Array.isArray(e.embedding) && e.embedding.length === qdim);
     if (compatible.length !== index.length) {
       console.warn(
-        `RAG warning: ${index.length - compatible.length} index embeddings skipped due to dimension mismatch (query=${qdim}). Re-ingest with the same OPENAI_EMBED_MODEL and provider to fix.`,
+        `RAG warning: ${index.length - compatible.length} index embeddings skipped due to dimension mismatch (query=${qdim}). Re-ingest with the same EMBEDDING_MODEL and provider to fix.`,
       );
     }
     // Score and apply small source-aware boosts (resume/linkedin)
