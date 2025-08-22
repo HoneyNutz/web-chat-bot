@@ -192,6 +192,17 @@ async function main() {
   const outPath = path.join(outDir, "index.json");
   await fs.writeFile(outPath, JSON.stringify(index, null, 2));
   console.log("Wrote", outPath, "with", index.length, "chunks");
+
+  // Also copy canonical resume.json to static for public serving at /data/resume.json
+  try {
+    const resumeSrc = path.resolve("content/resume.json");
+    const resumeDst = path.join(outDir, "resume.json");
+    const resumeText = await fs.readFile(resumeSrc, "utf-8");
+    await fs.writeFile(resumeDst, resumeText);
+    console.log("Copied", resumeSrc, "->", resumeDst);
+  } catch (e) {
+    console.warn("resume.json not copied (optional):", (e as Error).message);
+  }
 }
 
 main().catch((e) => {

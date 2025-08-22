@@ -76,7 +76,8 @@ async function awaitableSearch(
       const base = cosineSim(q, e.embedding);
       let bonus = 0;
       const src = (e.source || "").toLowerCase();
-      if (src.includes("resume.json")) bonus += 0.02; // gentle nudge toward background
+      // Treat resume as primary background source
+      if (src.includes("resume.json")) bonus += 0.08; // stronger nudge toward resume content
       if (src.includes("linkedin.md")) bonus += 0.01;
       return { ...e, score: base + bonus } as IndexEntry & { score: number };
     });
