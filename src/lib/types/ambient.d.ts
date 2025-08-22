@@ -7,5 +7,10 @@ declare module '*.json?raw' {
 declare module '@emailjs/browser' {
   const mod: any;
   export default mod;
-  export = mod;
 }
+
+// Svelte 5 runes ambient declarations (for TS tooling/ESLint)
+// These are erased at compile time by Svelte, but TS needs them typed.
+declare function $state<T>(initial?: T): T;
+declare function $props<T>(): T;
+declare function $bindable<T>(v?: T): T;

@@ -3,7 +3,7 @@ import type { NavItem, BannerData, AboutData, ServiceData, TestimonialData, Cont
 // Navigation data
 export const NAVBAR_DATA: NavItem[] = [
   { id: 1, url: '/', label: 'Home' },
-  { id: 2, url: '#services', label: 'Services' },
+  { id: 2, url: '#expertise', label: 'Expertise' },
   { id: 3, url: '#about', label: 'About Me' }
 ];
 
@@ -39,71 +39,71 @@ const ABOUT_DATA: AboutData = {
 };
 
 const SERVICE_DATA: ServiceData = {
-	HEADING: 'My Services',
-	SUBHEADING: 'Expanding Business Efficiency Through:',
-	ID: 'services',
+	HEADING: 'My Expertise',
+	SUBHEADING: "Expanding business efficiency through work I've delivered:",
+	ID: 'expertise',
 	SERVICE_LIST: [
 		{
 			LABEL: 'Data Strategy',
 			ID: 'serv-DS',
 			DESCRIPTION:
-				"As industry continues to generate more nuanced data it has become increasingly difficult to plan, manage, analyze, and react to the changing landscape within your data environment.  With a sound Data Strategy, you will build governance guardrails (including standards, security, and management practices), identify personas, build a culture of analysis and predictive automation -- enabling proactive data-driven business insights vs uninformed 'gut' reactions to changing conditions.",
+				"I've led data strategy programs that put governance guardrails (standards, security, and management practices) in place, define personas, and build a culture of analysis and predictive automation. The result: proactive, data-driven decisions instead of 'gut' reactions to a changing landscape.",
 			IMG: '/icons/brain.svg'
 		},
 		{
 			LABEL: 'Data Literacy',
 			ID: 'serv-DL',
 			DESCRIPTION:
-				'Building a culture of data requires a core ability to read, write, and work with data.  Many organizations end up battling themselves due in part to a lack of common understanding of their own data assets.  Structuring a data literacy approach is critical for organizations to mature their data capabilities and effectively implement their data strategy.',
+				"I design and roll out data literacy programs so teams can read, write, and reason with data the same way. By establishing a shared vocabulary and practices, I've helped organizations reduce internal friction and actually use their data to drive outcomes.",
 			IMG: '/icons/woman student.svg'
 		},
 		{
 			LABEL: 'Business Process Automation',
 			ID: 'serv-BPA',
 			DESCRIPTION:
-				'With many organizations ineffectively utilizing business intelligence due to the shear volume of data streams, business process automation enables analysts to focus on analysis while bots govern data standards, enforce data quality, and accomplish repetitive day-to-day minutiae. Utilizing tools like Power Automate, enterprises are able to deploy process that support their analysts and reduce the overall impact of repetitive data processes.',
+				"I build automations so analysts spend time on analysis—not repetitive tasks. Using tools like Power Automate, I've shipped bots that enforce data standards, improve data quality, and run day-to-day processes reliably.",
 			IMG: '/icons/cogwheel.svg'
 		},
 		{
 			LABEL: 'Low-Code / No-Code',
 			ID: 'serv-NC',
 			DESCRIPTION:
-				'The Microsoft Power Platform of Applications (Power Automate, Power Apps, and Power BI) have opened the door to Citizen Development.  Investing in low-code/no-code environments allow businesses to leverage those who know their data the best to build automation, govern data, and reduce reliance on unsanctioned tools and excel spreadsheets. Managing governance practices, building centers of excellence, and enabling non-IT-trained employees to create solutions saves money, speeds up delivery and reduces the risk of shadow-IT.',
+				"I help organizations adopt the Microsoft Power Platform (Power Automate, Power Apps, Power BI) to enable citizen development—safely. I set up governance, centers of excellence, and coaching so domain experts can ship solutions faster without creating shadow IT.",
 			IMG: '/icons/flask.svg'
 		},
 		{
 			LABEL: 'SharePoint',
 			ID: 'serv-SPT',
 			DESCRIPTION:
-				'SharePoint generally evokes a sense of despair and outrage to many -- but for the enterprise it is a necessary evil.  Building effective SharePoint platforms is key to enabling content and knowledge management.  Many times organizations release SharePoint without effective administration, forethought, or automation -- with the advent of the Power Platform and Teams  -- its time to rethink how your organize your content.',
+				"I architect, clean up, and modernize SharePoint so it actually supports content and knowledge management. Paired with Teams and the Power Platform, I've rebuilt environments with proper administration, automation, and information architecture.",
 			IMG: '/icons/note.svg'
 		},
 		{
 			LABEL: 'Front End Web Development',
 			ID: 'serv-WD',
 			DESCRIPTION:
-				'Building scalable web solutions to meet the needs of customers.  I am experienced in building and deploying web assets utilizing HTML, CSS (including popular CSS frameworks like Tailwind and Bootstrap), and Javascript. Additionally I have developed web applications using the latest technologies (this site itself is built on sveltekit as a proof of concept).',
+				"I design and ship scalable web apps. I work with HTML, CSS, JavaScript, and frameworks like SvelteKit (this site is one), Tailwind, and Bootstrap, and I handle deployment pipelines end-to-end.",
 			IMG: '/icons/laptop front.svg'
 		},
 		{
 			LABEL: 'Business Development',
 			ID: 'serv-BD',
 			DESCRIPTION:
-				'Relationships are an asset - show your clients that you value them and treat your competitors as allies. I have a strong belief that competitors working together as one team will always pay dividends in the future -- for the client, your own sanity, and future business. I bring a proven history of identifying, qualifying, and capturing new business as well as a vast network of past colleagues with the skills and capabilities for successful delivery.',
+				"I win work by investing in relationships and partnering—even with competitors when it benefits the client. I have a track record of qualifying and capturing new business and building teams from my network to deliver.",
 			IMG: '/icons/stairs to success.svg'
 		},
 		{
 			LABEL: 'Figma Design & Wireframe',
 			ID: 'serv-FD',
 			DESCRIPTION:
-				'Uninspired content becomes unused content.  Planning with a focus on Human Centered Design builds requirements that meet the needs of end users and reduces overall development time. Using wireframes solutions I work with my team to bring ideas to life.',
+				"I use Figma to turn ideas into tangible wireframes and prototypes, aligning stakeholders early and reducing overall delivery time through fast iteration.",
 			IMG: '/icons/index cards.svg'
 		},
 		{
 			LABEL: 'Marketing Campaigns',
 			ID: 'serv-MC',
 			DESCRIPTION:
-				'Many People rely on social networks to discover, research, and educate themselves about a brand before engaging with that organization. The more your audience wants to engage with your content, the more likely it is that they will want to share it.',
+				"I plan and run campaigns that people actually want to engage with. From content strategy to execution, I focus on material that earns attention and gets shared.",
 			IMG: '/icons/copybook.svg'
 		}
 	]

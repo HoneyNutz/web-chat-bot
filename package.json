@@ -30,6 +30,8 @@
     "svelte": "^5.0.0"
   },
   "devDependencies": {
+    "@opentelemetry/api": "^1.8.0",
+    "@sveltejs/adapter-auto": "^6.1.0",
     "@sveltejs/adapter-cloudflare": "^4.0.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.4",
     "@sveltejs/vite-plugin-svelte-inspector": "^3.0.0",

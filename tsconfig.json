@@ -1,7 +1,15 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "types": ["svelte", "vitest/globals"],
+    "types": ["svelte", "vite/client", "vitest/globals"],
     "moduleResolution": "bundler"
-  }
+  },
+  "include": [
+    ".svelte-kit/ambient.d.ts",
+    ".svelte-kit/types/**/$types.d.ts",
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "vite.config.ts"
+  ]
 }

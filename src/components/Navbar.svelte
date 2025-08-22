@@ -17,7 +17,7 @@
     <div class="flex justify-between h-16">
       <!-- Logo/Brand -->
       <div class="flex items-center">
-        <a href="#" class="flex-shrink-0 text-xl font-bold">
+        <a href="/" class="flex-shrink-0 text-xl font-bold">
           adicapr<span class="text-[#FF00B4]">.</span>io
         </a>
       </div>
@@ -25,7 +25,7 @@
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex lg:items-center lg:space-x-8">
         {#each navelements as navelement}
-          {#if navelement.label === 'Services'}
+          {#if navelement.label === 'Expertise'}
             <div class="relative group">
               <button
                 class="flex items-center px-3 py-2 text-sm font-medium hover:text-[#FF00B4] transition-colors duration-200"
@@ -43,7 +43,7 @@
                   />
                 </svg>
               </button>
-              <!-- Services Dropdown -->
+              <!-- Expertise Dropdown -->
               <div
                 class="absolute left-0 mt-2 w-56 bg-slate-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
               >
@@ -114,7 +114,7 @@
     <div class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 bg-slate-800 border-t border-slate-700">
         {#each navelements as navelement}
-          {#if navelement.label === 'Services'}
+          {#if navelement.label === 'Expertise'}
             <div class="space-y-1">
               <div class="px-3 py-2 text-sm font-medium text-gray-300">
                 {navelement.label}

@@ -41,12 +41,27 @@
 
 <!-- Contact Modal - Only visible when triggered by navbar button -->
 {#if showContactModal}
-  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onclick={closeModal}>
-    <div class="bg-slate-800 rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto" onclick={(e) => e.stopPropagation()}>
-      <button class="btn btn-sm btn-circle absolute right-2 top-2 z-10" onclick={closeModal}>✕</button>
+  <div
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    role="button"
+    tabindex="0"
+    aria-label="Close contact modal"
+    onclick={closeModal}
+    onkeydown={(e) => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') closeModal(); }}
+  >
+    <div
+      class="bg-slate-800 rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto relative"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contact-modal-title"
+      tabindex="-1"
+      onkeydown={(e) => { if (e.key === 'Escape') closeModal(); e.stopPropagation(); }}
+      onclick={(e) => e.stopPropagation()}
+    >
+      <button class="btn btn-sm btn-circle absolute right-2 top-2 z-10" onclick={closeModal} aria-label="Close">✕</button>
 
       <div class="p-6">
-        <h2 class="mb-6 text-4xl tracking-tight font-extrabold text-center text-white">
+        <h2 id="contact-modal-title" class="mb-6 text-4xl tracking-tight font-extrabold text-center text-white">
           Contact Me
         </h2>
         <div class="flex flex-col lg:flex-row gap-6">
@@ -65,10 +80,11 @@
           <div class="flex flex-col w-full lg:w-2/3 px-6">
             <form onsubmit={sendEmail} class="space-y-4">
               <div class="form-control w-full">
-                <label class="label">
+                <label class="label" for="from_name">
                   <span class="label-text text-white">What is your name?</span>
                 </label>
                 <input
+                  id="from_name"
                   type="text"
                   placeholder="Type here"
                   name="from_name"
@@ -78,10 +94,11 @@
               </div>
 
               <div class="form-control w-full">
-                <label class="label">
+                <label class="label" for="reply_to">
                   <span class="label-text text-white">What is your email?</span>
                 </label>
                 <input
+                  id="reply_to"
                   type="email"
                   placeholder="your@email.com"
                   name="reply_to"
@@ -91,10 +108,11 @@
               </div>
 
               <div class="form-control w-full">
-                <label class="label">
+                <label class="label" for="message">
                   <span class="label-text text-white">What can I help you with?</span>
                 </label>
                 <textarea
+                  id="message"
                   placeholder="Type Here"
                   name="message"
                   required
