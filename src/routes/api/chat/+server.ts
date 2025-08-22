@@ -1,5 +1,5 @@
 import type { RequestHandler } from "@sveltejs/kit";
-import { getIndex, search } from "$lib/server/vector";
+import { getIndex, searchWithScores } from "$lib/server/vector";
 import { chatWithContext, type OpenAIConfig } from "$lib/server/openai_api";
 
 export const POST: RequestHandler = async ({ request, fetch, platform }) => {
@@ -28,7 +28,23 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
 
     // Retrieve top-k chunks from static index using embeddings
     const index = await getIndex(fetch);
-    const results = await search(index, message, 5, cfg);
+
+    // First do scored search for gating
+    const scored = await searchWithScores(index, message, 5, cfg);
+    const topScore = scored.length ? scored[0].score : -1;
+
+    // Heuristic threshold: if similarity is too low, treat as out-of-scope
+    const SIM_THRESHOLD = 0.1; // tuned for MiniLM/OpenAI embeddings with cosineSim
+    if (topScore < SIM_THRESHOLD) {
+      const refusal =
+        "That’s outside the scope of Alex’s experience and the site’s content.";
+      return new Response(JSON.stringify({ reply: refusal }), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Build context from in-scope results (drop scores)
+    const results = scored.map(({ score, ...r }) => r);
     const context = results
       .map((r) => `Source: ${r.source}\n-----\n${r.text}`)
       .join("\n\n");

@@ -8,6 +8,8 @@ export type IndexEntry = {
   embedding: number[];
 };
 
+export type ScoredIndexEntry = IndexEntry & { score: number };
+
 let cachedIndex: IndexEntry[] | null = null;
 
 export async function getIndex(fetchFn: typeof fetch): Promise<IndexEntry[]> {
@@ -31,6 +33,37 @@ export async function getIndex(fetchFn: typeof fetch): Promise<IndexEntry[]> {
     cachedIndex = [];
   }
   return cachedIndex;
+}
+
+// Expose a scored variant for gating/diagnostics
+export async function searchWithScores(
+  index: IndexEntry[],
+  query: string,
+  k = 5,
+  cfg?: OpenAIConfig,
+): Promise<ScoredIndexEntry[]> {
+  const results = await awaitableSearch(index, query, Math.max(1, k), cfg);
+  // Re-embed the query and recompute scores to include them in the return payload.
+  // To avoid duplicate embedding calls, we approximate by re-scoring using the existing logic.
+  // Simpler path: reuse the same pipeline with a small adaptation.
+  try {
+    const q = await embedQuery(query, cfg);
+    const qdim = q.length;
+    const compatible = results.filter((e) => Array.isArray(e.embedding) && e.embedding.length === qdim);
+    const scored = compatible.map((e) => {
+      const base = cosineSim(q, e.embedding);
+      let bonus = 0;
+      const src = (e.source || "").toLowerCase();
+      if (src.includes("resume.json")) bonus += 0.08;
+      if (src.includes("linkedin.md")) bonus += 0.01;
+      return { ...e, score: base + bonus } as ScoredIndexEntry;
+    });
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, k);
+  } catch {
+    // If embedding fails, return empty to signal gating failure.
+    return [];
+  }
 }
 
 export function cosineSim(a: number[], b: number[]): number {
@@ -79,13 +112,13 @@ async function awaitableSearch(
       // Treat resume as primary background source
       if (src.includes("resume.json")) bonus += 0.08; // stronger nudge toward resume content
       if (src.includes("linkedin.md")) bonus += 0.01;
-      return { ...e, score: base + bonus } as IndexEntry & { score: number };
+      return { ...e, score: base + bonus } as ScoredIndexEntry;
     });
     scored.sort((a, b) => b.score - a.score);
 
     // Diversify: limit dominance by any single source
     const maxPerSource = Math.max(1, Math.ceil(k / 2));
-    const taken: (IndexEntry & { score?: number })[] = [];
+    const taken: ScoredIndexEntry[] = [];
     const counts = new Map<string, number>();
     for (const s of scored) {
       const src = s.source || "";
