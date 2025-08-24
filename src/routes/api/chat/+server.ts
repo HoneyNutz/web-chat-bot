@@ -14,14 +14,25 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
     const penv = (platform as any)?.env as Record<string, string> | undefined;
     const cfg: OpenAIConfig | undefined = penv
       ? {
+          // Legacy OPENAI_* keys
           OPENAI_API_KEY: penv.OPENAI_API_KEY,
           OPENAI_BASE_URL: penv.OPENAI_BASE_URL,
           OPENAI_EMBED_API_KEY: penv.OPENAI_EMBED_API_KEY,
           OPENAI_EMBED_BASE_URL: penv.OPENAI_EMBED_BASE_URL,
           OPENAI_CHAT_MODEL: penv.OPENAI_CHAT_MODEL,
           OPENAI_EMBED_MODEL: penv.OPENAI_EMBED_MODEL,
+          // Provider-agnostic CHAT_*/EMBEDDING_* keys
+          CHAT_API_KEY: penv.CHAT_API_KEY,
+          CHAT_BASE_URL: penv.CHAT_BASE_URL,
+          CHAT_MODEL: penv.CHAT_MODEL,
+          EMBEDDING_API_KEY: penv.EMBEDDING_API_KEY,
+          EMBEDDING_BASE_URL: penv.EMBEDDING_BASE_URL,
+          EMBEDDING_MODEL: penv.EMBEDDING_MODEL,
+          // Site metadata
           OPENROUTER_SITE_URL: penv.OPENROUTER_SITE_URL || penv.ORIGIN,
           OPENROUTER_SITE_NAME: penv.OPENROUTER_SITE_NAME,
+          SITE_URL: penv.SITE_URL || penv.ORIGIN,
+          SITE_NAME: penv.SITE_NAME,
           ORIGIN: penv.ORIGIN,
         }
       : undefined;

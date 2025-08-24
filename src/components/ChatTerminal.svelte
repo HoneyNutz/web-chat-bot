@@ -36,6 +36,35 @@
     }
   }
 
+  async function moreDetail() {
+    const text = 'More detail';
+    messages = [...messages, { role: 'user', content: text }];
+    loading = true;
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: messages.slice(-8) })
+      });
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch (e) {}
+      if (!res.ok || !data?.reply) {
+        const err = data?.error || 'Error contacting server.';
+        const detail = data?.detail ? ` (${data.detail})` : '';
+        messages = [...messages, { role: 'assistant', content: `${err}${detail}` }];
+      } else {
+        messages = [...messages, { role: 'assistant', content: data.reply }];
+      }
+    } catch {
+      messages = [...messages, { role: 'assistant', content: 'Error contacting server.' }];
+    } finally {
+      loading = false;
+      inputEl?.focus();
+    }
+  }
+
   function onKey(e: KeyboardEvent) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -59,6 +88,15 @@
         <div>
           <span class="text-slate-400">{m.role === 'user' ? 'you' : 'bot'}&gt;</span>
           <span class="whitespace-pre-wrap"> {m.content}</span>
+          {#if i === messages.length - 1 && m.role === 'assistant' && !loading}
+            <div class="mt-1">
+              <button
+                class="text-xs text-slate-400 hover:text-slate-200 underline underline-offset-4"
+                onclick={moreDetail}
+                aria-label="Ask for more detail"
+              >More detail</button>
+            </div>
+          {/if}
         </div>
       {/each}
 
