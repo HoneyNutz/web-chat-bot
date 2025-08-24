@@ -2,6 +2,25 @@ import type { RequestHandler } from "@sveltejs/kit";
 import { getIndex, searchWithScores } from "$lib/server/vector";
 import { chatWithContext, type OpenAIConfig } from "$lib/server/openai_api";
 
+// Simple guardrail: refuse sensitive/meta/system/backend requests before calling the model
+function isSensitiveQuery(msg: string): boolean {
+  const m = msg.toLowerCase();
+  const patterns = [
+    // Prompt/system/meta
+    /(system prompt|internal instructions|hidden prompt|prompt leak|jailbreak|developer mode|bypass)/i,
+    /(ignore (?:the )?instructions)/i,
+    /(how (?:do|did) you work|what model|provider|api (?:version|base url)|temperature|max_tokens|frequency_penalty|presence_penalty)/i,
+    // Secrets/env/backend
+    /(api key|access token|secret|env(?:ironment)?\s*vars?|\.env|file\s*path|server\s*logs?|stack\s*traces?)/i,
+    /(database (?:password|credentials|connection|string)|connection string)/i,
+    // Code/source dumping
+    /(source code|show (?:the )?code|dump (?:the )?code|print (?:the )?code|list (?:the )?files|repository (?:url|link))/i,
+    // Demands for exact sources/text from the context
+    /(give me (?:the )?sources|list (?:the )?sources|show (?:the )?sources|exact text|verbatim\s+from\s+context|quote\s+from\s+context)/i,
+  ];
+  return patterns.some((re) => re.test(m));
+}
+
 export const POST: RequestHandler = async ({ request, fetch, platform }) => {
   try {
     const { message, history = [] } = await request.json();
@@ -37,6 +56,15 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
         }
       : undefined;
 
+    // Block sensitive/meta/system/backend requests
+    if (isSensitiveQuery(message)) {
+      const refusal =
+        "I can’t share sources, backend/system details, or internal settings. I can summarize relevant info from the site instead.";
+      return new Response(JSON.stringify({ reply: refusal }), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     // Retrieve top-k chunks from static index using embeddings
     const index = await getIndex(fetch);
 
@@ -57,7 +85,8 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
     // Build context from in-scope results (drop scores)
     const results = scored.map(({ score, ...r }) => r);
     const context = results
-      .map((r) => `Source: ${r.source}\n-----\n${r.text}`)
+      // Avoid leaking source filenames/URLs into the prompt; pass only content text
+      .map((r) => r.text)
       .join("\n\n");
 
     const reply = await chatWithContext(message, context, history, cfg);
@@ -66,9 +95,8 @@ export const POST: RequestHandler = async ({ request, fetch, platform }) => {
     });
   } catch (err) {
     console.error(err);
-    // Surface some detail to help debug in production without exposing stack traces
-    const detail = err instanceof Error ? err.message : String(err);
-    return new Response(JSON.stringify({ error: "Server error", detail }), {
+    // Do not leak error details to clients
+    return new Response(JSON.stringify({ error: "Server error" }), {
       status: 500,
     });
   }
