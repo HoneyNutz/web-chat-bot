@@ -129,24 +129,28 @@
           </h2>
           <section class="pb-4 mb-4 break-inside-avoid">
             {#each resume.projects as project}
-              <header>
-                <h3 class="text-lg font-semibold text-slate-700 leading-snugish">
-                  <a href={project.url} class="group">
+              <article class="mb-6 last:mb-0">
+                <header>
+                  <h2 class="text-xl font-bold tracking-tight leading-relaxed text-slate-700">
                     {project.name}
-                    <span
-                      class="inline-block mr-3 font-normal transition duration-100 ease-in text-slate-550 print:text-black group-hover:text-slate-700"
-                    >
-                      ↗
+                    {@html colorizer('|', '|', '#FF00B4')}
+                    <span class="text-slate-400 font-normal text-lg tracking-normal">
+                      {#each project.keywords as keyword, i}{#if i !== 0}{', '}{/if}{keyword}{/each}
                     </span>
-                  </a>
-                </h3>
-                <p class="leading-normal text-md text-slate-550">
-                  Since {project.startDate} | {#each project.keywords as keyword, i}{#if i !== 0}{', '}{/if}{keyword}{/each}
+                  </h2>
+                  <h3 class="text-slate-600 tracking-wide text-sm italic">
+                    {project.entity}
+                    {@html colorizer('|', '|', '#ad60c7')}
+                    {new Date(project.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - 
+                    {project.endDate && project.endDate.toLowerCase() !== 'present'
+                      ? new Date(project.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+                      : 'PRESENT'}
+                  </h3>
+                </header>
+                <p class="mt-2 text-md text-slate-700 leading-normal">
+                  {project.description}
                 </p>
-              </header>
-              <p class="mt-2.1 text-md text-slate-700 leading-normal">
-                {project.description}
-              </p>
+              </article>
             {/each}
           </section>
         </div>
@@ -156,28 +160,28 @@
       <section class="pb-4 md:mt-4 first:mt-0">
         <!-- To keep in the same column -->
         <div class="break-inside-avoid">
-          <h2 class="mb-2 text-lg font-bold tracking-widest text-slate-700 print:font-normal">
+          <h2 class="mb-5 text-lg font-bold tracking-widest text-slate-700 print:font-normal">
             SKILLS
           </h2>
 
-          <section class="mb-2 break-inside-avoid">
-            <header>
-              <h3 class="font-semibold text-slate-700 text-m leading-snugish">Functional</h3>
-            </header>
-            <div class="my-1 last:pb-1">
-              <ul class="flex flex-wrap text-sm2 leading-relaxed -mr-1.6 -mb-1">
-                {#each resume.skills as skill}
-                  {#if !skill.keywords.includes('devops')}
-                    <li
-                      class="p-3 m-1 badge badge-ghost badge-outline text-slate-700 leading-relaxed print:bg-white print:border-inset"
-                    >
-                      {skill.name}
-                    </li>
-                  {/if}
-                {/each}
-              </ul>
-            </div>
-          </section>
+          <div class="space-y-6 break-inside-avoid">
+            {#each resume.skills as skill}
+              {#if !skill.keywords.includes('devops')}
+                <div>
+                  <h3 class="text-md font-bold text-slate-800 border-l-4 border-[#FF00B4] pl-2 mb-3 leading-snugish tracking-wide uppercase">
+                    {skill.name}
+                  </h3>
+                  <ul class="flex flex-wrap gap-2">
+                    {#each skill.keywords as keyword}
+                      <li class="px-3 py-1 bg-slate-200 text-slate-700 text-sm font-medium rounded-full print:bg-white print:border print:border-slate-300 shadow-sm hover:bg-slate-300 transition-colors">
+                        {keyword}
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+            {/each}
+          </div>
         </div>
       </section>
     </div>

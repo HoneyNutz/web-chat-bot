@@ -49,6 +49,7 @@ export interface Project {
   url?: string;
   roles?: string[];
   startDate?: string;
+  endDate?: string;
   entity?: string;
   highlights?: string[];
 }

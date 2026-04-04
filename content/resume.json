@@ -1,13 +1,11 @@
 {
   "basics": {
     "name": "Alexander DiCaprio",
-    "label": "Data and AI Product Strategist",
-    "image": "https://avatars.githubusercontent.com/u/8881986?v=4",
+    "label": "Data and AI Strategist",
     "email": "alex@adicapr.io",
     "phone": "484-888-4655",
     "url": "https://adicapr.io",
-    "summary": "IT professional with 20 years of experience in leading the design, development, communication, and implementation of data-driven and AI-powered solutions that enable business decisions and improve operational efficiencies.",
-    "yearsOfExperience": 20,
+    "summary": "Experienced Strategist with 20 years of experience in providing innovative leadership in the design, development, communication, and implementation of data and AI-powered solutions that democratizes data enabling data-driven business decisions and operational efficiencies.",
     "location": {
       "address": "334 Old Bailey Ln.",
       "postalCode": "19382",
@@ -31,13 +29,15 @@
       "position": "Data and AI Strategist",
       "url": "https://www.state.gov/",
       "startDate": "2023-01-16",
-      "summary": "Strategist transforming how the Department leverages Artificial Intelligence to enhance data-driven diplomacy, streamline workflows, and build AI capacity.",
+      "summary": "Portfolio Manager transforming how the Department leverages Artificial Intelligence to enhance data-driven diplomacy, streamline workflows, and build AI capacity.",
       "highlights": [
-        "Architect of the Department of State's AI Marketplace, enabling users to identify, qualify, and deploy trusted AI platforms.",
         "Deployed a governed cloud based data science and AI sandbox environment in Azure Databricks, serving over 1,000 Department of State data scientists worldwide.",
-        "Managed project team of over 20 contractors to enhance data access to R and Python, enable citizen developers build AI tools with API endpoints, and enable version CI/CD pipelines through Github Enterprise.",
-        "Managed stakeholder engagement and communications with over 50 Department of State bureaus, offices, and embassies to build consensus on AI roadmap strategy and implementation."
-      ]
+        "Managed portfolio of product teams, consisting of over twenty data scientists, analysts, engineers, and full stack developers; building platforms, infrastructure as code, and generative AI experiments.",
+        "Architect of the Department of State's AI Marketplace, enabling users to identify, qualify, and deploy trusted AI platforms.",
+        "Coordinated stakeholder engagement and communications domestically and abroad; building consensus on the Departments AI roadmap strategy.",
+        "Architected the Department first Azure Kubernetes deployment; enabling data scientists to request GPU-powered development environments, that could securely and reliably train data models to accelerate AI deployments."
+      ],
+      "endDate": "Present"
     },
     {
       "name": "ADiCaprio Management Consulting, LLC",
@@ -50,7 +50,8 @@
       "highlights": [
         "Developed Data Management and Data Governance frameworks, data strategies, and wireframes to support the development of Monitoring and Evaluation databases.",
         "Automated business processes for client though Power Platform development realizing over $100K in cost savings."
-      ]
+      ],
+      "endDate": "2024-01-01"
     },
     {
       "name": "MetaPhase Consulting",
@@ -62,11 +63,9 @@
       "endDate": "2022-07-01",
       "summary": "Director of federal contracts, focusing on leading data-driven development initiatives across the federal government.",
       "highlights": [
-        "Managed and mentored team of over 20 data scientists spread across multiple Federal Government Agencies.",
-        "Developed foundational strategic Data Management and Governance frameworks for collecting, standardizing, and managing data.",
-        "Developed a Data and AI literacy framework.",
-        "Lead Data Analytics capability and architected data governance practices and automations to improve data quality, accessibility, and security.",
-        "Captured over $20M in federal contracts through business development."
+        "Directed multiple distributed teams of data scientists across Federal agencies, fostering company culture through mentorship, professional development, and leadership, ",
+        "Developed foundational strategic Data Management, Data and AI Literacy, and Governance frameworks enable Federal clients to succeed in implementing their data driven goals.",
+        "Captured over $20M in Federal contracts through business development, client relationships, and strategic engagements."
       ]
     },
     {
@@ -77,10 +76,10 @@
       "url": "https://www.boozallen.com/",
       "startDate": "2009-06-01",
       "endDate": "2017-10-01",
-      "summary": "IT Project Manager leading complex IT data analytics projects and programs across multiple federal agencies and cross-functional teams.",
+      "summary": "Technical Project Manager leading complex IT data analytics projects and programs across multiple Federal agencies and cross-functional teams.",
       "highlights": [
         "Leveraged both Agile and traditional Software Development Life Cycle (SDLC) frameworks for project execution.",
-        "Managed data driven initiatives to automate processes and streamline workflows for increased efficiency.",
+        "Managed data driven initiatives that automated processes and streamline workflows for increased efficiency.",
         "Developed and implemented data models, BI dashboards, and reporting solutions to enable data-driven insights."
       ]
     },
@@ -94,16 +93,16 @@
       "endDate": "2009-06-01",
       "summary": "Applied data analytics and Earned Value Management (EVM) techniques to manage material costs, integrate schedules, and maintain performance measurement baselines.",
       "highlights": [
-        "Applied Earned Value Management (EVM) techniques to establish and analyze cost/schedule baselines and resolve critical path conflicts.",
-        "Designed and implemented an automated database to reconcile $300M inventory procurements, reducing setup time from 2 weeks to under a day.",
-        "Led a cross-functional team to automate a manual process, achieving over $100K in documented cost savings."
+        "Applied EVM techniques to establish cost and schedule baselines, analyze data discrepancies, and resolve critical path conflicts.",
+        "Engineered an automated data pipeline into a relational database to reconcile transactional data for a complex V-22 aircraft block. This transformation compressed the analysis timeline by over 90%, enabling near real-time decision-making and significantly reducing manual overhead for global logistics operations.",
+        "Led a cross-functional team to automate a manual approval processes, achieving over $100K in documented cost savings through digital automation."
       ]
     }
   ],
   "projects": [
     {
       "name": "Funhouse",
-      "description": "Architected an Azure Databricks based data science sandbox that allowed over 1000 data scientists across the Department of State to experiment with secure open source python and R packages and Azure AI service.  The solution was goverened by a SDK that allowed us to track usage, enhance functionality, and simplify complex code structures.",
+      "description": "Architected Funhouse, an enterprise wide Azure Databricks AI sandbox enabling 1,000+ data scientists to securely leverage open-source Python/R and Azure AI services. This IDE accelerated the delivery of hundreds of AI use cases, modernizing operations across the Department of State’s domestic and international posts.",
       "keywords": [
         "Databricks",
         "Python",
@@ -112,15 +111,31 @@
       ],
       "url": "https://state.gov",
       "roles": [
-        "Product Manager",
-        "Strategist"
+        "Product Manager"
       ],
       "startDate": "2024-09-01",
-      "entity": "Department of State"
+      "entity": "Department of State",
+      "endDate": "Present"
+    },
+    {
+      "keywords": [
+        "OpenAI",
+        "Azure AI",
+        "Frontend Design"
+      ],
+      "roles": [
+        "Product Manager"
+      ],
+      "name": "Prompter API",
+      "entity": "Department of State",
+      "startDate": "2025-01-01",
+      "endDate": "Present",
+      "description": "Managed the deployment of the Department of State’s first enterprise AI gateway, 'Prompter.' Prompter was engineered as a C# wrapper around Azure OpenAI that democratized LLM access for departmental developers while implementing granular governance for cost attribution and usage telemetry.",
+      "url": "https://state.gov"
     },
     {
       "name": "AI Marketplace",
-      "description": "Developed strategic vision for the Department of State's AI Marketplace -- a human-centered interface to help users across the Department locate trusted AI platforms.  Lead over a hundred hours of customer and stakeholder interviews, designed an AI Maturity Pillar model that identified key considerations on AI usage including ethics and Bias that we risk as we continue to build and deploy AI solutions.",
+      "description": "Defined the strategic vision for the Department of State’s AI Marketplace, a human-centered ecosystem construct designed to connect a globally diverse population of users with vetted, trusted AI platforms. Specifically, developing a AI Maturity Pillar model based on 100+ hours of stakeholder discovery, establishing enterprise standards for ethical AI, bias mitigation, and risk-aware deployment.",
       "keywords": [
         "Databricks",
         "Python",
@@ -129,15 +144,15 @@
       ],
       "url": "https://state.gov",
       "roles": [
-        "Product Manager",
         "Strategist"
       ],
       "startDate": "2024-10-01",
-      "entity": "Department of State"
+      "entity": "Department of State",
+      "endDate": "2025-03-01"
     },
     {
       "name": "Human Resources Automation",
-      "description": "Built Power Platform solution that automated multiple HR workflows across MetaPhase Consulting. The soution leveraged Power Apps, Bower BI, Power Automate, and SharePoint and allowed rapid development of organizational charts, tracking of transactional HR Audit logs, and management and approvals of organizational awards and trainings.",
+      "description": "Engineered the automation of HR operations at MetaPhase through low-code Power Platform solutions.  Optimizing and automating award approval flows, training and compliance tracking, and transactional HR Audit Logs system to ensure data compliance and operational transparency.",
       "keywords": [
         "Power Apps",
         "Power Automate",
@@ -153,16 +168,14 @@
     },
     {
       "name": "Data Literacy Framework",
-      "description": "Architected the Data Literacy Framework and maturity model that defined the strategic goals on building an Data and AI informed USCIS.  Specifically through the identification of key skills, competencies, and learning pathways to build capacity over time.",
+      "description": "Architected the USCIS Data Literacy Framework and maturity model that defined the strategic goals for building a Data and AI informed USCIS.  Specifically, by identifying key skills, competencies, and learning pathways for personas to enhance their capacity over time.",
       "keywords": [
         "Data Literacy",
         "Strategic Design"
       ],
       "url": "https://uscis.gov",
       "roles": [
-        "Strategist",
-        "Program Manager",
-        "Advisor"
+        "Strategist"
       ],
       "startDate": "2018-07-01",
       "endDate": "2022-07-01",
@@ -176,7 +189,6 @@
       ],
       "url": "https://uscis.gov",
       "roles": [
-        "Advisor",
         "Strategist"
       ],
       "startDate": "2018-07-01",
@@ -185,7 +197,7 @@
     },
     {
       "name": "Machine Learning and Data Analytics",
-      "description": "Managed the transformation, migration and automation of a massive excel based report to Python/SQL Databricks notebooks and Tableau, reducing a 30 day process down to 3 days while increasing organizational transparency through Dashboard views of datasets.  Tasks included market research, customer outreach, automation of data pipelines, data wrangling and human centered Tableau dashboard development.",
+      "description": "Orchestrated the migration of a legacy, excel-based, enterprise wide performance reporting tool; modernizing an archaic solution into a high-performance Python and SQL-based ETL pipeline within Databricks. By automating data wrangling, templatizing data inputs, and integrating Tableau for real-time visualization, our team compressed the production timeline from 30 days to 72 hours, significantly enhancing data transparency and stakeholder trust.",
       "keywords": [
         "Databricks",
         "Human Centered Design",
@@ -193,9 +205,7 @@
       ],
       "url": "https://uscis.gov",
       "roles": [
-        "Program Manager",
-        "Advisor",
-        "Strategist"
+        "Program Manager"
       ],
       "startDate": "2018-07-01",
       "endDate": "2022-07-01",
@@ -239,16 +249,16 @@
   ],
   "awards": [
     {
-      "title": "Superior Honors",
-      "date": "2024-06-01",
-      "awarder": "Department of State - Ambassador Vrooman",
-      "summary": "For development of technologies that support data-driven diplomacy."
+      "title": "Meritorious Honors",
+      "date": "2026-01-26",
+      "awarder": "Department of State - Diplomatic Technology",
+      "summary": "For leading a democratized data and AI development environment for 1,000+ data scientists, providing secure, enterprise-wide access to advanced Python/R libraries and AI endpoints."
     },
     {
       "title": "Superior Honors",
       "date": "2024-05-01",
       "awarder": "Department of State - Assistant Secretary Phee",
-      "summary": "For developing a data-visualization product saving over $750,000."
+      "summary": "Recognized for excellence and innovation in developing datavis technologies that institutionalized data-driven diplomacy, enhanced efficiency, and secured over $750,000 in long-term savings."
     }
   ],
   "publications": [],
@@ -262,8 +272,7 @@
         "Leadership by Example",
         "Agile Development",
         "Stakeholder Engagement",
-        "Mentorship",
-        "Communications"
+        "Mentorship"
       ]
     },
     {
@@ -271,7 +280,8 @@
       "level": "5",
       "keywords": [
         "Process Automation",
-        "Workflow Optimization"
+        "Workflow Optimization",
+        "Artificial Intelligence"
       ]
     },
     {
@@ -280,9 +290,7 @@
       "keywords": [
         "Research and Design",
         "Digital Transformation",
-        "Data Literacy",
-        "Business Intelligence",
-        "Prompt Engineering"
+        "Data and AI Literacy"
       ]
     },
     {
@@ -312,7 +320,19 @@
     {
       "name": "Project Management Professional (PMP)",
       "date": "2016-05-02",
-      "issuer": "Project Management Institute"
+      "issuer": "Project Management Institute",
+      "type": "Certification",
+      "url": ""
+    },
+    {
+      "name": "Secret",
+      "date": "",
+      "issuer": "Department of Defense",
+      "type": "Security Clearance",
+      "url": ""
     }
-  ]
+  ],
+  "meta": {
+    "hidden_sections": []
+  }
 }
