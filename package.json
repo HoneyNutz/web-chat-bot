@@ -26,6 +26,8 @@
     "@emailjs/browser": "^4.4.1",
     "@fontsource/fira-code": "^5.2.6",
     "@sveltejs/kit": "^2.36.1",
+    "@types/marked": "^5.0.2",
+    "marked": "^17.0.5",
     "openai": "^4.55.4",
     "svelte": "^5.0.0"
   },
