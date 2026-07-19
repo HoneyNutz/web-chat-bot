@@ -18,7 +18,7 @@
       <!-- Logo/Brand -->
       <div class="flex items-center">
         <a href="/" class="flex-shrink-0 text-xl font-bold">
-          adicapr<span class="text-[#FF00B4]">.</span>io
+          dicaprio<span class="text-[#FF00B4]">.</span>dev
         </a>
       </div>
 

@@ -5,7 +5,7 @@
 - Bio: Just a front-end data nerd finding his way in consulting world of functionality
 - Company: Self-Employed
 - Location: Maputo, Mozambique / Washington, DC
-- Website: https://adicapr.io
+- Website: https://dicaprio.dev
 - Profile: https://github.com/HoneyNutz
 - Public repos: 7
 - Followers: 0
